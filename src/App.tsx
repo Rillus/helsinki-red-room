@@ -1,160 +1,173 @@
 // import { useState } from "react";
-import Gatere from "./assets/gmark.jpg";
-import { SlSocialLinkedin, SlSocialTwitter } from "react-icons/sl";
+import Logo from "./assets/logo.png";
+import {SlSocialFacebook, SlSocialInstagram, SlSocialTwitter, SlSocialYoutube} from "react-icons/sl";
 import {
-	TbNotebook,
-	TbWorld,
-	TbUser,
-	TbBrandGithub,
-	TbStack2,
-	TbShare2,
-	TbNotes,
-} from "react-icons/tb";
+  IoShirt,
+} from "react-icons/io5";
+
+import {
+  AiFillCaretDown,
+  AiFillCaretRight,
+  AiFillHeart,
+  AiFillInfoCircle,
+} from "react-icons/ai";
+
+import {
+  PiTiktokLogo
+} from "react-icons/pi";
+
+import {
+  FaTrophy
+} from "react-icons/fa";
+import {IconType} from "react-icons";
+
+const menu = [
+  {
+    id: 'about',
+    name: 'About',
+    link: "#",
+    icon: <AiFillInfoCircle className="Menu-linkLeft" />,
+    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+  },
+  {
+    id: 'collection',
+    name: 'The Collection',
+    link: "#",
+    icon: <IoShirt className="Menu-linkLeft" />,
+    actionIcon: <AiFillCaretDown className="Menu-linkRight" />,
+    subMenu: [
+      {
+        id: 'collection-1',
+        name: 'Item the first',
+        link: "#",
+        icon: <p className="Menu-linkLeft">1</p>,
+        actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+        classes: "Menu-link--collection",
+      },
+      {
+        id: 'collection-2',
+        name: 'Item the second',
+        link: "#",
+        icon: <p className="Menu-linkLeft">2</p>,
+        actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+        classes: "Menu-link--collection",
+      },
+    ],
+  },
+  {
+    id: 'competition',
+    name: 'Enter the Competition',
+    link: "#",
+    icon: <FaTrophy className="Menu-linkLeft" />,
+    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+  },
+  {
+    id: 'sponsors',
+    name: 'Our Sponsors',
+    link: "#",
+    icon: <AiFillHeart className="Menu-linkLeft" />,
+    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+  },
+];
+
+const socials = [
+  {
+    id: 'facebook',
+    link: "https://www.facebook.com/helsinkiredroom/",
+    icon: <SlSocialFacebook />,
+  },
+  {
+    id: 'twitter',
+    link: "https://twitter.com/helsinkiredroom/",
+    icon: <SlSocialTwitter />,
+  },
+  {
+    id: 'instagram',
+    link: "https://www.instagram.com/helsinkiredroom/",
+    icon: <SlSocialInstagram />,
+  },
+  {
+    id: 'youtube',
+    link: "https://www.youtube.com/@helsinkiredroom",
+    icon: <SlSocialYoutube />,
+  },
+  {
+    id: 'tiktok',
+    link: "https://www.tiktok.com/@helsinkiredroom",
+    icon: <PiTiktokLogo />,
+  }
+]
+
+function MenuLink({ name, link, icon, actionIcon, classes, subMenu }: {
+  name: string, link: string, icon: IconType, actionIcon: IconType, classes:string, subMenu?
+}) {
+  return (
+    <div className="w-full">
+      <a
+        className={`Menu-link ${classes || ''}`}
+        href={link}
+        target="_blank"
+      >
+        {icon}
+        <p className="p-5">{name}</p>
+        {actionIcon}
+      </a>
+      {subMenu && subMenu.map((subItem) => (
+        <MenuLink
+          key={subItem.id}
+          classes={subItem.classes || ''}
+          id={subItem.id}
+          name={subItem.name}
+          link={subItem.link}
+          icon={subItem.icon}
+          actionIcon={subItem.actionIcon} />
+      ))}
+    </div>
+  )
+}
+
+function SocialIcon ({ link, icon }: { link: string, icon: IconType }) {
+  return (
+    <a
+      className="Social-icon"
+      href={link}
+      target="_blank"
+    >
+      {icon}
+    </a>
+  )
+}
 
 function App() {
-//   const [copySuccess, setCopySuccess] = useState(false);
+  return (
+    <div className="Container">
+      <div className="Logo">
+        <img className="Logo-img" src={Logo} alt="Helsinki Red Room by Jere" />
+      </div>
+      <div className="Menu">
+        {menu.map((item) => (
+          <MenuLink
+            key={item.id}
+            name={item.name}
+            link={item.link}
+            icon={item.icon}
+            actionIcon={item.actionIcon}
+            subMenu={item?.subMenu}
+          />
+        ))}
+      </div>
 
-// 	const handleCopyClick = (link: string) => {
-// 		navigator.clipboard
-// 			.writeText(link)
-// 			.then(() => {
-// 				setCopySuccess(true);
-// 				setTimeout(() => {
-// 					setCopySuccess(false);
-// 				}, 2000);
-// 			})
-// 			.catch((error) => {
-// 				console.error("Copy failed:", error);
-// 			});
-// 	};
-	return (
-		<div className="flex flex-col justify-center items-center mx-3 my-12 md:mx-12">
-			<img className=" h-24 rounded-full" src={Gatere} alt="gateremark" />
-			<p className=" text-[#fff] my-3 text-lg font-bold">@gateremark</p>
-			<p className=" text-[#fff] text-base text-center">
-				| MERN Stack | Machine Learning | #foreverlearner
-			</p>
-			<div className="flex text-[#fff] text-3xl gap-5 my-7 justify-center items-center">
-				<a
-					className="hover:scale-110 transition duration-150 hover:text-[#2867b2] cursor-pointc"
-					href="https://www.linkedin.com/in/gateremark/"
-					target="_blank"
-				>
-					{" "}
-					<SlSocialLinkedin />{" "}
-				</a>
-				<a
-					className="hover:scale-110 transition duration-150 hover:text-[#39a9d9] cursor-pointc"
-					href="https://twitter.com/gatere_mark"
-					target="_blank"
-				>
-					{" "}
-					<SlSocialTwitter />{" "}
-				</a>
-			</div>
-			<div className="text-[#BDBDBD] flex flex-col gap-5 md:w-[55%] w-full items-center justify-center">
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://github.com/gateremark"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbBrandGithub className=" text-[35px]" />
-						<p className="p-5">GitHub</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="GitHub"
-							// id="githubLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://dev.to/gateremark"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbStack2 className=" text-[35px]" />
-						<p className="p-5">Dev.to</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="Dev.to"
-							// id="devLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://hashnode.com/@gateremark"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbNotebook className=" text-[35px]" />
-						<p className="p-5">Hashnode</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="Hashnode"
-							// id="hashnodeLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://gateremark.medium.com/"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbNotes className=" text-[35px]" />
-						<p className="p-5">Medium</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="Medium"
-							// id="mediumLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://gateremark.vercel.app/"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbWorld className=" text-[35px]" />
-						<p className="p-5">My Portfolio</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="My Portfolio"
-							// id="portfolioLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-				<a
-					className=" w-full text-center bg-[#525151] hover:bg-[#444444] rounded-[30px] hover:scale-[102%] transition duration-300 cursor-pointc"
-					href="https://drive.google.com/file/d/12AMcf0bl-dEfxma2KrAEli19FSRjwOKi/view?usp=drive_link"
-					target="_blank"
-				>
-					<div className="flex justify-between items-center ml-2 mr-4">
-						<TbUser className=" text-[35px]" />
-						<p className="p-5">My Résumé</p>
-						<TbShare2
-							className="text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2"
-							title="My Résumé"
-							// id="resumeLink"
-							// onClick={() => handleCopyClick("")}
-						/>
-					</div>
-				</a>
-			</div>
-			<p className="text-[#fff] mt-10 text-center">
-				Made with ❤️ by gateremark
-			</p>
-		</div>
-	);
+      <div className="Social">
+        {socials.map((social) => (
+          <SocialIcon
+            key={social.id}
+            link={social.link}
+            icon={social.icon}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default App;
