@@ -1,149 +1,44 @@
-// import { useState } from "react";
-import Logo from "./assets/logo.png";
-import {SlSocialFacebook, SlSocialInstagram, SlSocialTwitter, SlSocialYoutube} from "react-icons/sl";
-import {
-  IoShirt,
-} from "react-icons/io5";
+import Logo from "./assets/red-room-experience.svg";
+import {Link, Outlet, useLocation} from "react-router-dom";
 
-import {
-  AiFillCaretDown,
-  AiFillCaretRight,
-  AiFillHeart,
-  AiFillInfoCircle,
-} from "react-icons/ai";
+/* -- COMPONENTS -- */
+import MenuLink from "./components/MenuLink";
+import SocialIcon from "./components/SocialIcon";
 
-import {
-  PiTiktokLogo
-} from "react-icons/pi";
+/* -- DATA -- */
+import menuData from "./data/menu";
+import socialData from "./data/social";
 
-import {
-  FaTrophy
-} from "react-icons/fa";
-import {IconType} from "react-icons";
-
-const menu = [
-  {
-    id: 'about',
-    name: 'About',
-    link: "#",
-    icon: <AiFillInfoCircle className="Menu-linkLeft" />,
-    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-  },
-  {
-    id: 'collection',
-    name: 'The Collection',
-    link: "#",
-    icon: <IoShirt className="Menu-linkLeft" />,
-    actionIcon: <AiFillCaretDown className="Menu-linkRight" />,
-    subMenu: [
-      {
-        id: 'collection-1',
-        name: 'Item the first',
-        link: "#",
-        icon: <p className="Menu-linkLeft">1</p>,
-        actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-        classes: "Menu-link--collection",
-      },
-      {
-        id: 'collection-2',
-        name: 'Item the second',
-        link: "#",
-        icon: <p className="Menu-linkLeft">2</p>,
-        actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-        classes: "Menu-link--collection",
-      },
-    ],
-  },
-  {
-    id: 'competition',
-    name: 'Enter the Competition',
-    link: "#",
-    icon: <FaTrophy className="Menu-linkLeft" />,
-    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-  },
-  {
-    id: 'sponsors',
-    name: 'Our Sponsors',
-    link: "#",
-    icon: <AiFillHeart className="Menu-linkLeft" />,
-    actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-  },
-];
-
-const socials = [
-  {
-    id: 'facebook',
-    link: "https://www.facebook.com/helsinkiredroom/",
-    icon: <SlSocialFacebook />,
-  },
-  {
-    id: 'twitter',
-    link: "https://twitter.com/helsinkiredroom/",
-    icon: <SlSocialTwitter />,
-  },
-  {
-    id: 'instagram',
-    link: "https://www.instagram.com/helsinkiredroom/",
-    icon: <SlSocialInstagram />,
-  },
-  {
-    id: 'youtube',
-    link: "https://www.youtube.com/@helsinkiredroom",
-    icon: <SlSocialYoutube />,
-  },
-  {
-    id: 'tiktok',
-    link: "https://www.tiktok.com/@helsinkiredroom",
-    icon: <PiTiktokLogo />,
-  }
-]
-
-function MenuLink({ name, link, icon, actionIcon, classes, subMenu }: {
-  name: string, link: string, icon: IconType, actionIcon: IconType, classes:string, subMenu?
-}) {
-  return (
-    <div className="w-full">
-      <a
-        className={`Menu-link ${classes || ''}`}
-        href={link}
-        target="_blank"
-      >
-        {icon}
-        <p className="p-5">{name}</p>
-        {actionIcon}
-      </a>
-      {subMenu && subMenu.map((subItem) => (
-        <MenuLink
-          key={subItem.id}
-          classes={subItem.classes || ''}
-          id={subItem.id}
-          name={subItem.name}
-          link={subItem.link}
-          icon={subItem.icon}
-          actionIcon={subItem.actionIcon} />
-      ))}
-    </div>
-  )
-}
-
-function SocialIcon ({ link, icon }: { link: string, icon: IconType }) {
-  return (
-    <a
-      className="Social-icon"
-      href={link}
-      target="_blank"
-    >
-      {icon}
-    </a>
-  )
-}
+const menu = menuData.menu;
+const socials = socialData.socials;
 
 function App() {
+  const location = useLocation();
+
+  let locationClass = location.pathname;
+  switch (location.pathname) {
+    case '/':
+      locationClass = 'Home';
+      break;
+    case '/tickets':
+      locationClass = 'Tickets';
+      break;
+    case '/tickets/new-york':
+      locationClass = 'Tickets Tickets--NewYork';
+      break;
+    case '/tickets/san-diego':
+      locationClass = 'Tickets Tickets--SanDiego';
+      break;
+    default:
+      locationClass = '';
+  }
+
   return (
-    <div className="Container">
-      <div className="Logo">
+    <div className={`Container ${locationClass}`}>
+      <Link className="Logo" to="/">
         <img className="Logo-img" src={Logo} alt="Helsinki Red Room by Jere" />
-      </div>
+        with Manchester United, Marriott Hotels and Marriott Bonvoy
+      </Link>
       <div className="Menu">
         {menu.map((item) => (
           <MenuLink
@@ -155,6 +50,10 @@ function App() {
             subMenu={item?.subMenu}
           />
         ))}
+      </div>
+
+      <div className="Content">
+        <Outlet />
       </div>
 
       <div className="Social">
