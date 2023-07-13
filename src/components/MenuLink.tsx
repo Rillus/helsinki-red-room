@@ -1,8 +1,7 @@
-import {IconType} from "react-icons";
 import {Link} from "react-router-dom";
 
 export default function MenuLink({ name, link, icon, actionIcon, actionType, classes, subMenu }: {
-  name: string, icon: IconType, actionIcon: IconType, actionType?: string, link?: string, classes?: string, subMenu?
+  name: string, link: string, icon: any, actionIcon: any, actionType?: string, classes?: string, subMenu?: any
 }) {
 
   function LinkContents() {
@@ -19,8 +18,8 @@ export default function MenuLink({ name, link, icon, actionIcon, actionType, cla
       return (
         <a
           className={`Menu-link ${classes || ''}`}
+          target={`_blank`}
           href={link}
-          target="_blank"
         >
           <LinkContents />
         </a>
@@ -39,11 +38,10 @@ export default function MenuLink({ name, link, icon, actionIcon, actionType, cla
 
       <ThisLink />
 
-      {subMenu && subMenu.map((subItem) => (
+      {subMenu && subMenu.map((subItem: any) => (
         <MenuLink
           key={subItem.id}
           classes={subItem.classes || ''}
-          id={subItem.id}
           name={subItem.name}
           actionType={subItem.actionType}
           link={subItem.link}

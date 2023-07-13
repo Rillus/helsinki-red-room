@@ -1,4 +1,5 @@
 import Logo from "./assets/red-room-experience.svg";
+import ManU from "./assets/manchester-united.svg";
 import {Link, Outlet, useLocation} from "react-router-dom";
 
 /* -- COMPONENTS -- */
@@ -37,7 +38,7 @@ function App() {
     <div className={`Container ${locationClass}`}>
       <Link className="Logo" to="/">
         <img className="Logo-img" src={Logo} alt="Helsinki Red Room by Jere" />
-        with Manchester United, Marriott Hotels and Marriott Bonvoy
+        with Manchester&nbsp;United, Marriott&nbsp;Hotels and Marriott&nbsp;Bonvoy
       </Link>
       <div className="Menu">
         {menu.map((item) => (
@@ -47,7 +48,7 @@ function App() {
             link={item.link}
             icon={item.icon}
             actionIcon={item.actionIcon}
-            subMenu={item?.subMenu}
+            subMenu={item.subMenu ?? []}
           />
         ))}
       </div>
@@ -65,6 +66,8 @@ function App() {
           />
         ))}
       </div>
+
+      <img src={ManU} className="ManU" alt="Manchester United" />
     </div>
   );
 }

@@ -14,9 +14,9 @@ export default function Root() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="tickets" element={<Tickets />} />
-          <Route path="tickets/new-york" element={<Tickets location="newYork"/>} />
-          <Route path="tickets/san-diego" element={<Tickets location="sanDiego"/>} />
+          <Route path="tickets" element={<Home />} />
+          <Route path="tickets/new-york" element={<Tickets location="New York"/>} />
+          <Route path="tickets/san-diego" element={<Tickets location="San Diego"/>} />
         </Route>
       </Routes>
     </BrowserRouter>

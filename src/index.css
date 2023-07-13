@@ -4,8 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--red: #9b292d;
+	--red-dark: #3d1516;
+	--red-light: #CC0000;
+	--white: #FFF;
+	--grey1: #333;
+	--grey2: #444;
+	--grey3: #5F5E5E;
+	--grey4: #EEE;
+}
+
 html {
-	background-color: #9b292d;
+	background-color: var(--red);
 	font-family: "Nobile", sans-serif;
 }
 
@@ -14,11 +25,15 @@ html {
 	height: 8px;
 }
 ::-webkit-scrollbar-track {
-	background: #484e5c;
+	background: #000;
 }
 ::-webkit-scrollbar-thumb {
-	background: #0bd3fd;
+	background: var(--red-light);
 	opacity: 1;
+}
+
+h1 {
+	@apply text-4xl font-bold;
 }
 
 .Container {
@@ -26,13 +41,20 @@ html {
 }
 
 .Logo {
-	@apply w-full text-center mb-6 text-[#fff] block;
+	@apply w-full text-center p-3 mb-6 text-[#fff] block;
 }
 
 .Logo-img {
-	@apply max-w-2xl w-screen m-auto my-6;
+	@apply w-screen m-auto my-6;
+	max-width: calc(100% - 10px);
+
 }
 
+@media (min-width: 768px) {
+	.Logo-img {
+		@apply max-w-2xl;
+	}
+}
 
 .Menu {
 	@apply text-[#fff] flex flex-col items-start justify-start overflow-hidden float-left;
@@ -49,13 +71,13 @@ html {
 }
 
 .Menu-link {
-	@apply w-full text-center bg-[#3d1516] hover:bg-[#444444] hover:scale-[98%] transition duration-300
+	@apply w-full text-center bg-[var(--red-dark)] hover:bg-[var(--grey2)] hover:scale-[98%] transition duration-300
 	flex justify-between items-center;
 	height: 60px;
 }
 
 .Menu-link--collection {
-	@apply w-full text-center bg-[#333333] hover:bg-[#444444] hover:scale-[98%] transition duration-300;
+	@apply w-full text-center bg-[var(--grey1)] hover:bg-[var(--grey2)] hover:scale-[98%] transition duration-300;
 }
 
 .Menu-link--collection .Menu-linkLeft {
@@ -68,18 +90,31 @@ html {
 }
 
 .Menu-linkRight {
-	@apply text-[40px] hover:bg-[#5F5E5E] transition ease-in-out duration-300 rounded-full p-2 mr-2;
+	@apply text-[40px] hover:bg-[var(--grey3)] transition ease-in-out duration-300 rounded-full p-2 mr-2;
 }
 
 .Menu-subNav {
 	@apply flex flex-col w-full;
 }
 
+.TicketIcon {
+	position: relative;
+}
+.TicketIcon span {
+	color: var(--red-dark);
+	position: absolute;
+	top: 7px;
+	left: 19px;
+}
+
 /* Pages */
 .Content {
+	@apply text-[#fff];
 	width: calc(100% - 60px);
 	float: left;
 	opacity: 0;
+	transition: opacity 1s ease-out 0.5s, max-height 0.5s ease-in-out 0.5s;
+	max-height: 0px;
 }
 
 .Home .Menu {
@@ -94,7 +129,7 @@ html {
 
 .Tickets .Content {
 	opacity: 1;
-	transition: opacity 1s ease-out 0.5s;
+	max-height: none;
 }
 
 
@@ -107,3 +142,71 @@ html {
 	@apply hover:scale-110 transition duration-150 hover:text-[#2867b2];
 }
 
+
+/**
+ * Ticketlab overrides
+ */
+
+.Tickets .TL_Buy {
+	@apply text-left;
+}
+
+.Tickets .TL_Buy .Page {
+	padding-top: 0;
+}
+
+.Tickets .TL_Buy .Products-dateRow,
+.Tickets .TL_Buy .NumberInput .number-input__button,
+.Tickets .TL_Buy .Basket-bottom {
+	background-color: var(--red-dark);
+}
+
+.Tickets .TL_Buy .Progress-step {
+	color: var(--white);
+}
+
+.Tickets .TL_Buy .Progress-step--active:before {
+	background-color: var(--red-dark);
+	border-color: #999;
+}
+.Tickets .TL_Buy .Progress-filler {
+	background-color: var(--red-dark);
+}
+
+.Tickets .TL_Buy .Products-row,
+.Tickets .ConfirmOrder form {
+	background-color: var(--grey4);
+}
+.Tickets .ConfirmOrder form {
+	@apply p-3;
+}
+
+.Tickets .TL_Buy .Button {
+	background-color: var(--red);
+}
+
+.Tickets .Thanks {
+	@apply text-[#fff];
+}
+
+.Tickets .TL_Buy .Form-inputError,
+.Tickets .TL_Buy .Form-inputError a,
+.Tickets .TL_Buy {
+	background-color: var(--red);
+	padding-bottom: 20px;
+	color: var(--white);
+}
+
+.Tickets .TL_Buy .Products,
+.Tickets .TL_Buy .Basket,
+.Tickets .TL_Buy .ConfirmOrder
+{
+	color: var(--red-dark)
+}
+
+.ManU {
+	@apply p-3;
+	max-width: 100%;
+	width: 200px;
+	margin: auto;
+}
