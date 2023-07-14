@@ -143,11 +143,16 @@ h3 {
 
 
 .Social {
-	@apply flex text-[#fff] text-xl gap-5 my-7 justify-center items-center clear-both pt-6;
+	@apply flex text-[var(--white)] text-xl gap-5 my-7 justify-center items-center clear-both pt-6;
 }
 
 .Social-icon {
-	@apply hover:scale-110 transition duration-150 hover:text-[#2867b2];
+	@apply hover:scale-110 hover:text-[var(--red-dark)] p-2 rounded;
+	transition: all 0.3s ease-in-out;
+}
+
+.Social-icon:hover {
+	background-color: var(--white);
 }
 
 
