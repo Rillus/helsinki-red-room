@@ -105,14 +105,21 @@ h3 {
 	@apply flex flex-col w-full;
 }
 
-.TicketIcon {
+.TicketIcon,
+.TrophyIcon{
 	position: relative;
 }
-.TicketIcon span {
+.TicketIcon span,
+.TrophyIcon span {
 	color: var(--red-dark);
 	position: absolute;
 	top: 7px;
 	left: 19px;
+}
+.TrophyIcon span {
+	font-size: 11px;
+	top: 4px;
+	left: 22px;
 }
 
 /* Pages */

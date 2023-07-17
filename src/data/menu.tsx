@@ -2,7 +2,7 @@ import {
   // AiFillCaretDown,
   AiFillCaretRight, AiFillHeart, AiFillInfoCircle} from "react-icons/ai";
 // import {IoShirt} from "react-icons/io5";
-// import {FaTrophy} from "react-icons/fa";
+import {FaTrophy} from "react-icons/fa";
 import {FaTicketSimple} from "react-icons/fa6";
 
 export default {
@@ -29,6 +29,15 @@ export default {
       name: 'Pre-book San Diego',
       link: "/tickets/san-diego",
       icon: <div className="TicketIcon"><FaTicketSimple className="Menu-linkLeft" /><span>SD</span></div>,
+      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+      subMenu: []
+    },
+    {
+      id: 'competition',
+      name: 'New York Competition',
+      actionType: 'external',
+      link: "https://www.manutd.com/en/RRSupportersClubEventNY",
+      icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>NY</span></div>,
       actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
       subMenu: []
     },
