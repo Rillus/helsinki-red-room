@@ -1,8 +1,13 @@
 import {Link} from "react-router-dom";
 
-export default function MenuLink({ name, link, icon, actionIcon, actionType, classes, subMenu }: {
-  name: string, link: string, icon: any, actionIcon: any, actionType?: string, classes?: string, subMenu?: any
+export default function MenuLink({ id, name, link, icon, actionIcon, actionType, classes, subMenu }: {
+  id:string, name: string, link: string, icon: any, actionIcon: any, actionType?: string, classes?: string, subMenu?: any
 }) {
+  let customClass = '';
+
+  if (actionType && actionType === 'openSubNav') {
+    customClass = 'Menu-link--openSubNav';
+  }
 
   function LinkContents() {
     return (
@@ -14,6 +19,7 @@ export default function MenuLink({ name, link, icon, actionIcon, actionType, cla
     )
   }
   function ThisLink() {
+
     if (actionType === 'external') {
       return (
         <a
@@ -26,7 +32,10 @@ export default function MenuLink({ name, link, icon, actionIcon, actionType, cla
       )
     } else {
       return (
-        <Link to={link} className={`Menu-link ${classes || ''}`}>
+        <Link
+          to={link}
+          className={`Menu-link ${classes || ''}`}
+        >
           <LinkContents/>
         </Link>
       )
@@ -34,12 +43,13 @@ export default function MenuLink({ name, link, icon, actionIcon, actionType, cla
   }
 
   return (
-    <div className="w-full">
+    <div className={`w-full Menu-item Menu-item--${id} ${customClass}`}>
 
       <ThisLink />
 
       {subMenu && subMenu.map((subItem: any) => (
         <MenuLink
+          id={subItem.id}
           key={subItem.id}
           classes={subItem.classes || ''}
           name={subItem.name}

@@ -21,6 +21,9 @@ function App() {
     case '/':
       locationClass = 'Home';
       break;
+    case '/collection':
+      locationClass = 'Home Home--Collection';
+      break;
     case '/tickets':
       locationClass = 'Tickets';
       break;
@@ -34,6 +37,10 @@ function App() {
       locationClass = '';
   }
 
+  if ((/collection\/\d+/gm).test(location.pathname)) {
+      locationClass = 'Collection';
+  }
+
   return (
     <div className={`Container ${locationClass}`}>
       <Link className="Logo" to="/">
@@ -43,10 +50,12 @@ function App() {
       <div className="Menu">
         {menu.map((item) => (
           <MenuLink
+            id={item.id}
             key={item.id}
             name={item.name}
             link={item.link}
             icon={item.icon}
+            actionType={item?.actionType}
             actionIcon={item.actionIcon}
             subMenu={item.subMenu ?? []}
           />

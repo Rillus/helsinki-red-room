@@ -1,9 +1,16 @@
 import {
-  // AiFillCaretDown,
-  AiFillCaretRight, AiFillHeart, AiFillInfoCircle} from "react-icons/ai";
-// import {IoShirt} from "react-icons/io5";
+  AiFillCaretDown,
+  AiFillCaretRight,
+  AiFillHeart,
+  AiFillInfoCircle
+} from "react-icons/ai";
 import {FaTrophy} from "react-icons/fa";
 import {FaTicketSimple} from "react-icons/fa6";
+import {IoShirt} from "react-icons/io5";
+
+import collection from "./collection";
+
+const collectionMenu = collection.collection;
 
 export default {
   menu: [
@@ -16,14 +23,14 @@ export default {
       actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
       subMenu: []
     },
-    {
-      id: 'ny',
-      name: 'Pre-book New York',
-      link: "/tickets/new-york",
-      icon: <div className="TicketIcon"><FaTicketSimple className="Menu-linkLeft" /><span>NY</span></div>,
-      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-      subMenu: []
-    },
+    // {
+    //   id: 'ny',
+    //   name: 'Pre-book New York',
+    //   link: "/tickets/new-york",
+    //   icon: <div className="TicketIcon"><FaTicketSimple className="Menu-linkLeft" /><span>NY</span></div>,
+    //   actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+    //   subMenu: []
+    // },
     {
       id: 'sd',
       name: 'Pre-book San Diego',
@@ -33,11 +40,29 @@ export default {
       subMenu: []
     },
     {
+      id: 'collection',
+      name: 'The Collection',
+      actionType: 'openSubNav',
+      link: "/collection",
+      icon: <IoShirt className="Menu-linkLeft" />,
+      actionIcon: <AiFillCaretDown className="Menu-linkRight" />,
+      subMenu: collectionMenu
+    },
+    {
       id: 'competition',
       name: 'New York Competition',
       actionType: 'external',
       link: "https://www.manutd.com/en/RRSupportersClubEventNY",
       icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>NY</span></div>,
+      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+      subMenu: []
+    },
+    {
+      id: 'competition2',
+      name: 'San Diego Competition',
+      actionType: 'external',
+      link: "https://www.manutd.com/en/RRSupportersClubEventSD",
+      icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>SD</span></div>,
       actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
       subMenu: []
     },
@@ -53,30 +78,4 @@ export default {
   ]
 };
 
-/* TODO: Collection menu item */
-// {
-//   id: 'collection',
-//   name: 'The Collection',
-//   link: "#",
-//   icon: <IoShirt className="Menu-linkLeft" />,
-//   actionIcon: <AiFillCaretDown className="Menu-linkRight" />,
-//   subMenu: [
-//     {
-//       id: 'collection-1',
-//       name: 'Item the first',
-//       link: "#",
-//       icon: <p className="Menu-linkLeft">1</p>,
-//       actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-//       classes: "Menu-link--collection",
-//     },
-//     {
-//       id: 'collection-2',
-//       name: 'Item the second',
-//       link: "#",
-//       icon: <p className="Menu-linkLeft">2</p>,
-//       actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-//       classes: "Menu-link--collection",
-//     },
-//   ],
-// },
 
