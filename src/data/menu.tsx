@@ -31,14 +31,14 @@ export default {
     //   actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
     //   subMenu: []
     // },
-    {
-      id: 'sd',
-      name: 'Pre-book San Diego',
-      link: "/tickets/san-diego",
-      icon: <div className="TicketIcon"><FaTicketSimple className="Menu-linkLeft" /><span>SD</span></div>,
-      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-      subMenu: []
-    },
+    // {
+    //   id: 'sd',
+    //   name: 'Pre-book San Diego',
+    //   link: "/tickets/san-diego",
+    //   icon: <div className="TicketIcon"><FaTicketSimple className="Menu-linkLeft" /><span>SD</span></div>,
+    //   actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+    //   subMenu: []
+    // },
     {
       id: 'collection',
       name: 'The Collection',
@@ -48,24 +48,24 @@ export default {
       actionIcon: <AiFillCaretDown className="Menu-linkRight" />,
       subMenu: collectionMenu
     },
-    {
-      id: 'competition',
-      name: 'New York Competition',
-      actionType: 'external',
-      link: "https://www.manutd.com/en/RRSupportersClubEventNY",
-      icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>NY</span></div>,
-      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-      subMenu: []
-    },
-    {
-      id: 'competition2',
-      name: 'San Diego Competition',
-      actionType: 'external',
-      link: "https://www.manutd.com/en/RRSupportersClubEventSD",
-      icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>SD</span></div>,
-      actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
-      subMenu: []
-    },
+    // {
+    //   id: 'competition',
+    //   name: 'New York Competition',
+    //   actionType: 'external',
+    //   link: "https://www.manutd.com/en/RRSupportersClubEventNY",
+    //   icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>NY</span></div>,
+    //   actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+    //   subMenu: []
+    // },
+    // {
+    //   id: 'competition2',
+    //   name: 'San Diego Competition',
+    //   actionType: 'external',
+    //   link: "https://www.manutd.com/en/RRSupportersClubEventSD",
+    //   icon: <div className="TrophyIcon"><FaTrophy className="Menu-linkLeft" /><span>SD</span></div>,
+    //   actionIcon: <AiFillCaretRight className="Menu-linkRight" />,
+    //   subMenu: []
+    // },
     {
       id: 'sponsors',
       name: 'Our Partners',
